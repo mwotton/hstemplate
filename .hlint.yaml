@@ -1,0 +1,8 @@
+# generated file
+- ignore:
+    name: Unused LANGUAGE pragma
+    within: Schema
+# expect these to grow
+- ignore:
+    name: Use newtype instead of data
+    within: [API,Env.Env]
