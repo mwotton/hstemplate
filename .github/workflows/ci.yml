@@ -48,6 +48,7 @@ jobs:
     - name: Build
       run: |
         cabal update
+        cd hstemplate
         cabal build all --enable-tests --enable-benchmarks --write-ghc-environment-files=always
 
     - name: Test
