@@ -24,13 +24,12 @@ needs _something_ for things like preflights and non-haskell dependency checking
 - postgres/squeal backend
 - migrations with sqitch
 - ormolu/hlint hooks
+- CI github action
 
 TODO
 
 - test framework using tmp-postgres to set up test databases
-- CI integration
-   - github actions/laminar?
-   - coverage
+- code coverage check in CI
 - deployment
 - honeycomb monitoring
 - healthchecks
