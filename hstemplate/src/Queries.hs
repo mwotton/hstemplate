@@ -1,21 +1,20 @@
-{-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE DataKinds #-}
+{-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
-{-# LANGUAGE OverloadedLabels #-}
+{-# LANGUAGE DerivingStrategies #-}
+{-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE FlexibleContexts #-}
+{-# LANGUAGE GADTs #-}
+{-# LANGUAGE OverloadedLabels #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE TypeOperators #-}
-{-# LANGUAGE GADTs #-}
-{-# LANGUAGE DerivingStrategies #-}
-{-# LANGUAGE DeriveAnyClass #-}
 
 module Queries where
 
+import Schema (DB)
 import Squeal.PostgreSQL hiding (name)
-import Schema(DB)
-import Types(Foo)
-
+import Types (Foo)
 
 getAllFoosQ :: Statement DB () Foo
 getAllFoosQ = query $ select_ #name (from $ table (#hstemplate ! #foos))
