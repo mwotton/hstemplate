@@ -6,7 +6,6 @@ module Types where
 
 import qualified GHC.Generics as GHC
 import qualified Generics.SOP as SOP
-import Data.Int(Int64)
 
 data Foo
   = Foo

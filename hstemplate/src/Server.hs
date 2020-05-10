@@ -5,10 +5,10 @@ module Server where
 
 import API
 import Env (Env (..))
-import Queries (getAllFoosQ)
+-- import Queries (getAllFoosQ)
 import Servant
-import Squeal.PostgreSQL (execute, getRows)
-import Squeal.PostgreSQL.Session.Pool (usingConnectionPool)
+-- import Squeal.PostgreSQL (execute, getRows)
+-- import Squeal.PostgreSQL.Session.Pool (usingConnectionPool)
 
 --app :: Application
 -- app = serve (Proxy :: Proxy API) _server
