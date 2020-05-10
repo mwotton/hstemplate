@@ -1,0 +1,2 @@
+schema:
+	$(MAKE) -C .. schema

@@ -21,6 +21,13 @@ dependencies:
 - postgres-options
 - generics-sop
 
+# test-only dependencies: ghcide can't detect it yet, sadly
+# https://github.com/digital-asset/ghcide/issues/113
+- process
+- hspec
+
+
+
 library:
   source-dirs: src
 
@@ -48,4 +55,3 @@ tests:
     - servant-quickcheck
     - QuickCheck
     - hspec
-    - process

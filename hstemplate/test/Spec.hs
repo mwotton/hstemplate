@@ -1,9 +1,17 @@
 import System.Process (rawSystem)
+import System.Exit(ExitCode(..))
+import Test.Hspec
 
 main :: IO ()
 main = do
   regenerateSchema
   putStrLn "Test suite not yet implemented"
 
--- could make this cleverer but it'll do for now
-regenerateSchema = rawSystem "make" ["hstemplate/src/Schema.hs"]
+
+regenerateSchema = do
+  -- this is a tad sketchy - we just delegate this to the
+  -- makefile above
+  code <- rawSystem "make" ["schema"]
+  case code of
+    ExitSuccess -> pure ()
+    _ -> exitWith code
