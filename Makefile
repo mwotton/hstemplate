@@ -4,6 +4,9 @@ all: depcheck haskell
 haskell: hstemplate/src/Schema.hs
 	stack build --test --bench --no-run-tests --no-run-benchmarks
 
+hlint:
+	hlint .
+
 DBDEPS=$(wildcard verify/* deploy/* revert/*)
 
 .PHONY: schema

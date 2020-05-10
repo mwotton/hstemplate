@@ -76,6 +76,10 @@ jobs:
         ghc-version: ${{ matrix.ghc }}
         stack-version: ${{ matrix.stack }}
 
+    - name: Install HLint
+      run: |
+        stack install hlint
+
     - uses: actions/cache@v1
       name: Cache ~/.stack
       with:
