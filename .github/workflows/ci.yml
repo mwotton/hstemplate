@@ -12,12 +12,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+        # os: [ubuntu-latest, macOS-latest, windows-latest]
+        # not currently able to build mac or windows, ghc download times out
+        os: [ubuntu-latest]
         cabal: ["3.2"]
         ghc:
           - "8.6.5"
           - "8.8.3"
-          - "8.10.1"
+          # known broken via servant-quickcheck
+          # - "8.10.1"
         exclude:
           - os: macOS-latest
             ghc: 8.8.3
