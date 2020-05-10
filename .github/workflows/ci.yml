@@ -92,4 +92,4 @@ jobs:
 
     - name: Test
       run: |
-        stack test --system-ghc
+        PATH=$PATH:$HOME/.local/bin stack test --system-ghc
