@@ -31,32 +31,32 @@ jobs:
           - os: windows-latest
             ghc: 8.6.5
 
-    steps:
-    - uses: actions/checkout@v2
-      if: github.event.action == 'opened' || github.event.action == 'synchronize' || github.event.ref == 'refs/heads/master'
+    # steps:
+    # - uses: actions/checkout@v2
+    #   if: github.event.action == 'opened' || github.event.action == 'synchronize' || github.event.ref == 'refs/heads/master'
 
-    - uses: actions/setup-haskell@v1.1
-      id: setup-haskell-cabal
-      name: Setup Haskell
-      with:
-        ghc-version: ${{ matrix.ghc }}
-        cabal-version: ${{ matrix.cabal }}
+    # - uses: actions/setup-haskell@v1.1
+    #   id: setup-haskell-cabal
+    #   name: Setup Haskell
+    #   with:
+    #     ghc-version: ${{ matrix.ghc }}
+    #     cabal-version: ${{ matrix.cabal }}
 
-    - uses: actions/cache@v1
-      name: Cache cabal-store
-      with:
-        path: ${{ steps.setup-haskell-cabal.outputs.cabal-store }}
-        key: ${{ runner.os }}-${{ matrix.ghc }}-cabal
+    # - uses: actions/cache@v1
+    #   name: Cache cabal-store
+    #   with:
+    #     path: ${{ steps.setup-haskell-cabal.outputs.cabal-store }}
+    #     key: ${{ runner.os }}-${{ matrix.ghc }}-cabal
 
-    - name: Build
-      run: |
-        cabal update
-        cd hstemplate
-        cabal build all --enable-tests --enable-benchmarks --write-ghc-environment-files=always
+    # - name: Build
+    #   run: |
+    #     cabal update
+    #     cd hstemplate
+    #     cabal build all --enable-tests --enable-benchmarks --write-ghc-environment-files=always
 
-    - name: Test
-      run: |
-        cabal test all --enable-tests
+    # - name: Test
+    #   run: |
+    #     cabal test all --enable-tests
 
   stack:
     name: stack / ghc ${{ matrix.ghc }}
