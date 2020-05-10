@@ -78,13 +78,20 @@ jobs:
 
     - name: Install HLint
       run: |
-        stack install hlint
+        hlint --version || stack install hlint
+
+    - uses: actions/cache@v1
+      name: Cache ~/.local/bin
+      with:
+        path: ~/.local/bin
+        key: ${{ runner.os }}-stack
 
     - uses: actions/cache@v1
       name: Cache ~/.stack
       with:
         path: ~/.stack
         key: ${{ runner.os }}-${{ matrix.ghc }}-stack
+
 
     - name: Build
       run: |
