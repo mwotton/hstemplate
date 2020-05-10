@@ -1,17 +1,12 @@
-import System.Process (rawSystem)
-import System.Exit(ExitCode(..))
 import Test.Hspec
+import qualified PreflightSpec
 
 main :: IO ()
-main = do
-  regenerateSchema
-  putStrLn "Test suite not yet implemented"
+main = hspec spec
 
+spec = describe "hstemplate" $ do
+  PreflightSpec.spec
+  -- awful hack: i don't want to turn the "redundant do" hlint flag on,
+  -- but this is the standard form for hspec tests.
 
-regenerateSchema = do
-  -- this is a tad sketchy - we just delegate this to the
-  -- makefile above
-  code <- rawSystem "make" ["schema"]
-  case code of
-    ExitSuccess -> pure ()
-    _ -> exitWith code
+  pure ()

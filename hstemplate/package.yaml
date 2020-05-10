@@ -25,6 +25,8 @@ dependencies:
 # https://github.com/digital-asset/ghcide/issues/113
 - process
 - hspec
+# ghcide also can't seem to execute hspec-discover.
+# - hspec-discover
 
 
 
@@ -54,4 +56,3 @@ tests:
     - hstemplate
     - servant-quickcheck
     - QuickCheck
-    - hspec

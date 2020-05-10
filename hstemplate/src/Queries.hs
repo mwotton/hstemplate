@@ -1,13 +1,11 @@
 {-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DeriveAnyClass #-}
-{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE GADTs #-}
 {-# LANGUAGE OverloadedLabels #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TypeApplications #-}
+
+--{-# LANGUAGE TypeApplications #-}
 {-# LANGUAGE TypeOperators #-}
 
 module Queries where
@@ -17,4 +15,4 @@ import Squeal.PostgreSQL hiding (name)
 import Types (Foo)
 
 getAllFoosQ :: Statement DB () Foo
-getAllFoosQ = query $ select_ #name (from $ table (#hstemplate ! #foos))
+getAllFoosQ = query $ select_ (#id :* #name) (from $ table (#hstemplate ! #foos))

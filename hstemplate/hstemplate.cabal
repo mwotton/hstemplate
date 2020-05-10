@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 1e3f7585c20647543150de083a9c13b0183c9495c1f167cb96a8d3f94fda9e08
+-- hash: 932e4daaa3b342d24a1daa6e8576caa2aad1db1c0ccf6f2a303fbf6c43ea126b
 
 name:           hstemplate
 version:        0.1.0.0
@@ -75,6 +75,7 @@ test-suite hstemplate-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      PreflightSpec
       Paths_hstemplate
   hs-source-dirs:
       test
