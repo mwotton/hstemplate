@@ -1,0 +1,51 @@
+name:                hstemplate
+version:             0.1.0.0
+github:              "mwotton/hstemplate"
+license:             BSD3
+author:              "Mark Wotton"
+maintainer:          "mwotton@gmail.com"
+copyright:           "Mark Wotton"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+description:         Please see the README on GitHub at <https://github.com/mwotton/hstemplate#readme>
+
+dependencies:
+- base-noprelude
+- squeal-postgresql
+- servant
+- servant-server
+- relude
+- postgres-options
+- generics-sop
+
+library:
+  source-dirs: src
+
+executables:
+  server:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - hstemplate
+
+tests:
+  hstemplate-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - hstemplate
+    - servant-quickcheck
+    - QuickCheck
+    - hspec
+    - process
