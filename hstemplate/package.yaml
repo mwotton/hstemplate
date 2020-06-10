@@ -14,14 +14,18 @@ description:         Please see the README on GitHub at <https://github.com/mwot
 
 dependencies:
 - base-noprelude
+- relude
+
 - aeson
 - bytestring
+- exceptions
+- generics-sop
+- monad-logger
+- postgres-options
 - squeal-postgresql
 - servant
 - servant-server
-- relude
-- postgres-options
-- generics-sop
+- unliftio
 
 # test-only dependencies: ghcide can't detect it yet, sadly
 # https://github.com/digital-asset/ghcide/issues/113

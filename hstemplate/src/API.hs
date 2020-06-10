@@ -1,21 +1,24 @@
-{-# LANGUAGE DataKinds #-}
-{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DataKinds        #-}
+{-# LANGUAGE DeriveGeneric    #-}
 {-# LANGUAGE TypeApplications #-}
-{-# LANGUAGE TypeOperators #-}
+{-# LANGUAGE TypeOperators    #-}
 
 module API where
 
-import Servant
-import Servant.API.Generic
-import Types
+import           Servant
+import           Servant.API.Generic
+import           Types
 
-type API = Get '[JSON] [Foo]
+type API = ToServantApi Routes
 
 data Routes route
   = Routes
-      { _get :: route :- Get '[JSON] [Foo]
+      { getFoos :: route :-
+                   "foos" :> Get '[JSON] [Foo]
+      , someInt :: route :-
+                   "int" :> Get '[JSON] Int
       }
   deriving (Generic)
 
-api :: Proxy API
+api :: Proxy (ToServantApi Routes)
 api = genericApi (Proxy @Routes)

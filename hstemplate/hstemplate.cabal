@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7d6b4a194bc0ebe21e63a1bc57091ea496d7dbb1dda28be4ae517fd60c60c869
+-- hash: cdd4725e37c0890a17380a99b1aaf8593299c8b7206e34e418a03be43c2e63a6
 
 name:           hstemplate
 version:        0.1.0.0
@@ -30,7 +30,9 @@ library
       API
       Config
       Env
+      Error
       Lib
+      Manager
       Prelude
       Queries
       Schema
@@ -44,14 +46,17 @@ library
       aeson
     , base-noprelude
     , bytestring
+    , exceptions
     , generics-sop
     , hspec
+    , monad-logger
     , postgres-options
     , process
     , relude
     , servant
     , servant-server
     , squeal-postgresql
+    , unliftio
   default-language: Haskell2010
 
 executable server
@@ -65,15 +70,18 @@ executable server
       aeson
     , base-noprelude
     , bytestring
+    , exceptions
     , generics-sop
     , hspec
     , hstemplate
+    , monad-logger
     , postgres-options
     , process
     , relude
     , servant
     , servant-server
     , squeal-postgresql
+    , unliftio
     , warp
   default-language: Haskell2010
 
@@ -91,13 +99,16 @@ test-suite hstemplate-test
     , aeson
     , base-noprelude
     , bytestring
+    , exceptions
     , generics-sop
     , hspec
     , hstemplate
+    , monad-logger
     , postgres-options
     , process
     , relude
     , servant
     , servant-server
     , squeal-postgresql
+    , unliftio
   default-language: Haskell2010

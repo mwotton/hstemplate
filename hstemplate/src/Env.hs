@@ -1,15 +1,18 @@
+{-# LANGUAGE RecordWildCards #-}
 module Env where
 
 -- import qualified Database.PostgreSQL.Simple.Options as PGconnstr
-import           Config            (Config (..))
-import           Schema            (DB)
+import           Config                         (Config (..))
+import           Schema                         (DB)
 import           Squeal.PostgreSQL
---import Squeal.PostgreSQL.Session.Pool (Pool, usingConnectionPool)
+import           Squeal.PostgreSQL.Session.Pool (Pool, usingConnectionPool)
 
 --  { connection :: PGconnstr.Options }
 
 buildEnv :: Config -> IO Env
-buildEnv = undefined
+buildEnv Config {..} = do
+  connectionPool <- createConnectionPool connstr 1 0.5 20
+  pure Env{..}
 
 data Env
   = Env
