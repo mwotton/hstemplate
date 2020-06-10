@@ -14,6 +14,8 @@ description:         Please see the README on GitHub at <https://github.com/mwot
 
 dependencies:
 - base-noprelude
+- aeson
+- bytestring
 - squeal-postgresql
 - servant
 - servant-server
@@ -43,7 +45,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - hstemplate
-
+    - warp
 tests:
   hstemplate-test:
     main:                Spec.hs
@@ -54,5 +56,5 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - hstemplate
-    - servant-quickcheck
+      # - servant-quickcheck
     - QuickCheck

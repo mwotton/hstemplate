@@ -1,5 +1,7 @@
 resolver: lts-15.11
 
+#docker:
+        #  enable: true
 packages:
 - hstemplate
 

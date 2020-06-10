@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.33.0.
+-- This file has been generated from package.yaml by hpack version 0.31.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 932e4daaa3b342d24a1daa6e8576caa2aad1db1c0ccf6f2a303fbf6c43ea126b
+-- hash: 7d6b4a194bc0ebe21e63a1bc57091ea496d7dbb1dda28be4ae517fd60c60c869
 
 name:           hstemplate
 version:        0.1.0.0
@@ -28,6 +28,7 @@ source-repository head
 library
   exposed-modules:
       API
+      Config
       Env
       Lib
       Prelude
@@ -40,7 +41,9 @@ library
   hs-source-dirs:
       src
   build-depends:
-      base-noprelude
+      aeson
+    , base-noprelude
+    , bytestring
     , generics-sop
     , hspec
     , postgres-options
@@ -59,7 +62,9 @@ executable server
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base-noprelude
+      aeson
+    , base-noprelude
+    , bytestring
     , generics-sop
     , hspec
     , hstemplate
@@ -69,6 +74,7 @@ executable server
     , servant
     , servant-server
     , squeal-postgresql
+    , warp
   default-language: Haskell2010
 
 test-suite hstemplate-test
@@ -82,7 +88,9 @@ test-suite hstemplate-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       QuickCheck
+    , aeson
     , base-noprelude
+    , bytestring
     , generics-sop
     , hspec
     , hstemplate
@@ -90,7 +98,6 @@ test-suite hstemplate-test
     , process
     , relude
     , servant
-    , servant-quickcheck
     , servant-server
     , squeal-postgresql
   default-language: Haskell2010
