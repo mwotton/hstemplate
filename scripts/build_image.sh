@@ -2,18 +2,16 @@
 
 set -euo pipefail
 
-docker pull mwotton/hstemplate:compile-stage || true
-docker pull mwotton/hstemplate:latest || true
+docker pull mwotton/hstemplate-dependencies:latest || true
 
-# Build the compile stage:
-docker build --target build \
-       --cache-from=mwotton/hstemplate:compile-stage \
-       --tag mwotton/hstemplate:compile-stage .
+docker build --target dependencies \
+       --cache-from=mwotton/hstemplate-dependencies:latest \
+       --tag mwotton/hstemplate-dependencies .
 
-docker push mwotton/hstemplate:compile-stage
+docker push mwotton/hstemplate-dependencies:latest
+
 # Build the runtime stage, using cached compile stage:
 docker build --target server \
-       --cache-from=mwotton/hstemplate:compile-stage \
-       --cache-from=mwotton/hstemplate:latest \
-       --tag mwotton/hstemplate:latest .
-docker push mwotton/hstemplate:latest
+       --cache-from=mwotton/hstemplate-dependencies:latest \
+       --tag mwotton/hstemplate-server .
+docker push mwotton/hstemplate-server:latest

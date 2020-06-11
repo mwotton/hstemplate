@@ -1,0 +1,24 @@
+FROM fpco/stack-build:lts-15.11 as dependencies
+RUN mkdir /opt/build /opt/build/hstemplate
+COPY stack.yaml stack.yaml.lock snapshot.yaml /opt/build/
+COPY hstemplate/package.yaml /opt/build/hstemplate/
+RUN cd /opt/build && stack build --system-ghc --dependencies-only
+
+FROM fpco/stack-build:lts-15.11 as build
+# grab these from clean deps build
+COPY --from=dependencies /root/.stack /root/.stack
+COPY . /opt/build
+RUN cd /opt/build && stack install --system-ghc
+
+FROM heroku/heroku:18.nightly as server
+RUN mkdir -p /opt/hstemplate
+ARG BINARY_PATH
+WORKDIR /opt/hstemplate
+# could download these in a separate step if we cared.
+RUN apt-get update && apt-get install -y \
+  ca-certificates \
+  libgmp-dev libpq5
+COPY --from=build /root/.local/bin .
+# COPY static /opt/hstemplate/static
+# COPY config /opt/hstemplate/config
+CMD ["/opt/hstemplate/server"]
