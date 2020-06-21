@@ -2,14 +2,13 @@
 
 module Server where
 
-import           API                            (API, Routes (..))
-import           Env                            (Env (..))
-import           Manager                        (runApp)
-import           Queries                        (getAllFoosQ)
-import           Servant                        (Server)
-import           Servant.Server.Generic         (genericServer)
-import           Squeal.PostgreSQL              (execute, getRows)
-import           Squeal.PostgreSQL.Session.Pool (usingConnectionPool)
+import           API                    (API, Routes (..))
+import           Env                    (Env (..))
+import           Manager                (runApp)
+import           Queries                (getAllFoosQ)
+import           Servant                (Server)
+import           Servant.Server.Generic (genericServer)
+import           Squeal.PostgreSQL      (execute, getRows)
 
 -- probably this should have a custom monad but it doesn't bother
 -- me too badly for now.

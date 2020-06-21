@@ -3,16 +3,17 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE MultiParamTypeClasses      #-}
 {-# LANGUAGE UndecidableInstances       #-}
+{-# LANGUAGE PolyKinds       #-}
 {-# LANGUAGE DerivingVia       #-}
 module Manager where
 
-import           Control.Monad.Logger
+-- import           Control.Monad.Logger
 import           Env
-import           Error                (sqlError)
+import           Error                ()
 import           Schema
-import           Squeal.PostgreSQL    (MonadPQ (..), PQ, trySqueal,
+import           Squeal.PostgreSQL    (MonadPQ (..), PQ,
                                        usingConnectionPool)
-import           UnliftIO (UnliftIO(..), withUnliftIO, MonadUnliftIO(..), handleIO, throwIO)
+import           UnliftIO (MonadUnliftIO(..))
 import Control.Monad.Catch (MonadCatch, MonadThrow, MonadMask)
 
 instance MonadUnliftIO m => MonadUnliftIO (AppT r m) where
@@ -47,6 +48,12 @@ instance MonadTrans (AppT r) where
 type App = AppT Env (PQ DB DB IO)
 
 -- runAppInTransaction :: Env -> App a -> IO a
+
+runApp :: MonadUnliftIO io
+       =>  Env
+       -> AppT Env (PQ DB DB io)  x
+       -> io x
+
 runApp env =
     usingConnectionPool (connectionPool env)
   . flip runReaderT env

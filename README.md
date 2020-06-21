@@ -33,6 +33,8 @@ needs _something_ for things like preflights and non-haskell dependency checking
 - migrations with sqitch
 - ormolu hook
 - CI github action
+- deployment
+  - heroku/docker deployment, sqitch container for migrations.
 
 TODO
 
@@ -61,7 +63,6 @@ TODO
 
 - test framework using tmp-postgres to set up test databases
 - code coverage check in CI
-- deployment
 - honeycomb monitoring
   - https://github.com/EarnestResearch/honeycomb-wai-haskell/blob/master/src/Network/Wai/Honeycomb.hs
     wai middleware for honeycomb, not more general

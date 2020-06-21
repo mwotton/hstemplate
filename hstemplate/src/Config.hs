@@ -7,7 +7,6 @@
 --   but is runtime information (connection pools etc)
 module Config where
 
-import           Data.ByteString
 import           System.Environment (getEnv)
 
 data Config = Config
