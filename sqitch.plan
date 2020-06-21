@@ -4,3 +4,4 @@
 
 appschema 2020-05-09T20:34:32Z Mark Wotton <mwotton@gmail.com> # Add schema for all hstemplate objects.
 foos [appschema] 2020-05-09T20:40:23Z Mark Wotton <mwotton@gmail.com> # Creates table to track our foos.
+index_name 2020-06-21T19:49:22Z Mark Wotton,,, <mark@ram> # add an index to foos

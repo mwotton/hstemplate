@@ -20,9 +20,13 @@ type PGcidr = UnsafePGType "cidr"
 
 type PGltree = UnsafePGType "ltree"
 
+type PGltxtquery = UnsafePGType "ltxtquery"
+
+type PGlquery = UnsafePGType "lquery"
+
 type DB = '["hstemplate" ::: Schema]
 
-type Schema = Join Tables Enums
+type Schema = Join Tables (Join Views (Join Enums (Join Functions Domains)))
 
 -- enums
 
@@ -45,4 +49,13 @@ type FoosColumns =
 type FoosConstraints = '["foos_pkey" ::: 'PrimaryKey '["id"]]
 
 type FoosTable = FoosConstraints :=> FoosColumns
+
 -- VIEWS
+type Views =
+  '[]
+
+-- functions
+type Functions =
+  '[]
+
+type Domains = '[]
