@@ -98,7 +98,7 @@ jobs:
 
     - name: Install HLint
       run: |
-        hlint --version || stack install hlint
+        hlint --version || stack install hlint --system-ghc
 
     - name: Build
       run: |
@@ -110,7 +110,7 @@ jobs:
 
     - name: Move coverage
       run: |
-        mv `stack path --local-hpc-root` hpc
+        mv `stack path --system-ghc --local-hpc-root` hpc
 
     - uses: actions/upload-artifact@v2
       with:
