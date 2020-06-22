@@ -13,7 +13,7 @@ data Foo
       { id :: Int32
       , name :: Text
       }
-  deriving stock (Show, GHC.Generic)
+  deriving stock (Show, GHC.Generic, Eq)
   deriving anyclass (SOP.Generic, SOP.HasDatatypeInfo)
 
 instance ToJSON Foo

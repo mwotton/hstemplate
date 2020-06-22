@@ -60,5 +60,4 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - hstemplate
-      # - servant-quickcheck
     - QuickCheck

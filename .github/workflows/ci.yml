@@ -99,4 +99,13 @@ jobs:
 
     - name: Test
       run: |
-        PATH=$PATH:$HOME/.local/bin stack test --system-ghc
+        PATH=$PATH:$HOME/.local/bin stack test --system-ghc --coverage
+
+    - name: Coverage
+      run: |
+        stack hpc report . --destdir hpc
+
+   - uses: actions/upload-artifact@v2
+     with:
+       name: coverage
+       path: hpc
