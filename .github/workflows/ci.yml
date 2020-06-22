@@ -108,9 +108,9 @@ jobs:
       run: |
         PATH=$PATH:$HOME/.local/bin stack test --system-ghc --coverage
 
-    - name: Coverage
+    - name: Move coverage
       run: |
-        stack hpc report . --destdir hpc || true
+        mv `stack path --local-hpc-root` hpc
 
     - uses: actions/upload-artifact@v2
       with:
