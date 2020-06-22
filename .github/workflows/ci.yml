@@ -111,11 +111,15 @@ jobs:
 
     - name: Test
       run: |
-        PATH=$PATH:$HOME/.local/bin stack test --system-ghc --coverage
+        stack test --system-ghc --coverage
 
-    - name: Move coverage
+    - name: Generate coverage
       run: |
-        mv `stack path --system-ghc --local-hpc-root` hpc
+        stack hpc report . --system-ghc --destdir hpc
+
+    # - name: Move coverage
+    #   run: |
+    #     mv `stack path --system-ghc --local-hpc-root` hpc
 
     - uses: actions/upload-artifact@v2
       with:
