@@ -77,6 +77,7 @@ jobs:
     - name: munge path
       run: |
         echo "::add-path::$HOME/.local/bin"
+        echo "::add-path::/usr/lib/postgresql/10/bin"
 
     - uses: actions/setup-haskell@v1.1
       name: Setup Haskell Stack
