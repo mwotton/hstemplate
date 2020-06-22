@@ -94,7 +94,7 @@ jobs:
 
     - name: Build
       run: |
-        stack build --system-ghc --test --bench --no-run-tests --no-run-benchmarks --pedantic
+        stack build --coverage --system-ghc --test --bench --no-run-tests --no-run-benchmarks --pedantic
 
     - name: Test
       run: |
@@ -102,7 +102,7 @@ jobs:
 
     - name: Coverage
       run: |
-        stack hpc report . --destdir hpc
+        stack hpc report . --destdir hpc || true
 
     - uses: actions/upload-artifact@v2
       with:
