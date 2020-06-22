@@ -1,5 +1,7 @@
 # best-practices haskell template
 
+![CI](https://github.com/mwotton/hstemplate/workflows/CI/badge.svg)
+
 This is a distillation of all the annoying tasks I end up setting up
 anyway.
 
