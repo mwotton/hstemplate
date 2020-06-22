@@ -72,7 +72,7 @@ jobs:
 
     - name: munge path
       run: |
-        echo '::set-env name=PATH::$HOME/.local/bin:$PATH'
+        echo "::add-path::$HOME/.local/bin"
 
     - uses: actions/setup-haskell@v1.1
       name: Setup Haskell Stack
