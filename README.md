@@ -39,6 +39,9 @@ needs _something_ for things like preflights and non-haskell dependency checking
   - heroku/docker deployment, sqitch container for migrations.
 - code coverage is recorded
   - only get a zip file. cooler if this worked https://github.com/actions/upload-artifact/issues/62#issuecomment-601472239 - in the works.
+- honeycomb monitoring
+  - https://github.com/EarnestResearch/honeycomb-wai-haskell/blob/master/src/Network/Wai/Honeycomb.hs
+    wai middleware for honeycomb, not more general
 
 TODO
 
@@ -69,14 +72,4 @@ TODO
 
 - test framework using tmp-postgres to set up test databases
 - coverage ratchet
-- honeycomb monitoring
-  - https://github.com/EarnestResearch/honeycomb-wai-haskell/blob/master/src/Network/Wai/Honeycomb.hs
-    wai middleware for honeycomb, not more general
-  - https://github.com/ChrisCoffey/haskell-opentracing-light#readme
-    a light opentracing-compliant lib
-  - https://github.com/kim/opentracing/tree/master/opentracing
-	full-featured, heavier deps
-  - https://github.com/honeycombio/honeycomb-opentracing-proxy
-	- honeycomb has a proxy that can talk opentracing
-	- awkward for heroku: needs a second docker image, which costs money
 - healthchecks
