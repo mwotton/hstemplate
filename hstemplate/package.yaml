@@ -22,6 +22,7 @@ dependencies:
 - generics-sop
 - honeycomb
 - honeycomb-wai
+- microlens
 - microlens-mtl
 - monad-logger
 - postgres-options

@@ -23,8 +23,8 @@ import           Squeal.PostgreSQL        (MonadPQ (..), PQ,
 main :: IO ()
 main = do
   config@Config{..} <- configFromEnv
-  env <- buildEnv config
-  run portnum =<< (`runReaderT` env) (runApplicationT (traceApplicationT (ServiceName "hstemplate") (SpanName "some span") $ liftApplication $ app env))
+  withEnv config $ \env  ->
+    run portnum =<< (`runReaderT` env) (runApplicationT (traceApplicationT (ServiceName "hstemplate") (SpanName "some span") $ liftApplication $ app env))
 
 
 app :: Env -> Application

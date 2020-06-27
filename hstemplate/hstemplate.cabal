@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ea60159ec91718941d2113b028a72d888bb13996d47ae4a0a28511faa74f6039
+-- hash: 988a9020089e045580c190b9996f73f3e9bb16d61e6147d17d192ccf56a75d8a
 
 name:           hstemplate
 version:        0.1.0.0
@@ -51,6 +51,7 @@ library
     , honeycomb
     , honeycomb-wai
     , hspec
+    , microlens
     , microlens-mtl
     , monad-logger
     , postgres-options
@@ -80,6 +81,7 @@ executable server
     , honeycomb-wai
     , hspec
     , hstemplate
+    , microlens
     , microlens-mtl
     , monad-logger
     , postgres-options
@@ -113,6 +115,7 @@ test-suite hstemplate-test
     , honeycomb-wai
     , hspec
     , hstemplate
+    , microlens
     , microlens-mtl
     , monad-logger
     , postgres-options

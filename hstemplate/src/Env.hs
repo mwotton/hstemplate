@@ -5,22 +5,29 @@ module Env where
 import           Config            (Config (..))
 import qualified Honeycomb         as HC
 import qualified Honeycomb.Trace   as HC
-import           Lens.Micro.Mtl    ()
+import           Lens.Micro        (lens)
 import           Schema            (DB)
-import           Squeal.PostgreSQL (Connection, K, Pool, createConnectionPool)
+import           Squeal.PostgreSQL (Connection, K, Pool, createConnectionPool,
+                                    destroyConnectionPool)
+import           UnliftIO
 
 instance HC.HasHoney Env where
-  honeyL = _
+  honeyL = lens appHoneycomb (\x y -> x { appHoneycomb = y })
 
-instance HC.HasSpanContext Env where
-  spanContextL = lens _
+-- instance HC.HasSpanContext Env where
+--   spanContextL = lens _ _
 
-buildEnv :: Config -> IO Env
-buildEnv Config {..} = do
-  connectionPool <- createConnectionPool connstr 1 0.5 20
-  pure Env{..}
+withEnv :: (MonadIO m,MonadUnliftIO m) => Config -> (Env -> m a) -> m a
+withEnv Config{..} f = do
+  server <- HC.defaultHoneyServerOptions
+  HC.withHoney' server  honeyConf $ \appHoneycomb ->
+    bracket (createConnectionPool connstr 1 0.5 20) destroyConnectionPool $ \connectionPool ->
+      f (Env {..})
+
+
 
 data Env
   = Env
       { connectionPool :: !(Pool (K Connection DB))
+      , appHoneycomb   :: !HC.Honey
       }
