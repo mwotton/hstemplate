@@ -4,17 +4,22 @@ module Server where
 
 import           API                    (API, Routes (..))
 import           Env                    (Env (..))
-import           Manager                (runApp)
+import           Manager                (App, runApp)
 import           Queries                (getAllFoosQ)
-import           Servant                (Server)
-import           Servant.Server.Generic (genericServer)
+import           Servant                (Handler, ServerT)
+import           Servant.Server.Generic (genericServerT)
 import           Squeal.PostgreSQL      (execute, getRows)
+
+
 
 -- probably this should have a custom monad but it doesn't bother
 -- me too badly for now.
-server :: Env -> Server API
-server e = genericServer $  Routes
-  { getFoos = run (getRows =<< execute getAllFoosQ)
-  , someInt = run (pure 12)
+server :: ServerT API App
+server = genericServerT $  Routes
+  { getFoos = getRows =<< execute getAllFoosQ
+  , someInt = pure 12
   }
-  where run = liftIO . runApp e
+--  where run = liftIO . runApp e
+
+api :: Proxy API
+api = Proxy

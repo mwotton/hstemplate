@@ -42,6 +42,8 @@ needs _something_ for things like preflights and non-haskell dependency checking
 
 TODO
 
+- authn
+  - https://hackage.haskell.org/package/wai-middleware-auth looks reasonable?
 - property enforcement mechanisms
   - emacs save hook
   - ghc source plugin

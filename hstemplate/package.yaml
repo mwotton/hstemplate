@@ -22,12 +22,14 @@ dependencies:
 - generics-sop
 - honeycomb
 - honeycomb-wai
+- microlens-mtl
 - monad-logger
 - postgres-options
 - squeal-postgresql
 - servant
 - servant-server
 - unliftio
+- wai
 
 # test-only dependencies: ghcide can't detect it yet, sadly
 # https://github.com/digital-asset/ghcide/issues/113
@@ -51,6 +53,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - hstemplate
+    - honeycomb
     - warp
 tests:
   hstemplate-test:

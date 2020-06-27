@@ -15,6 +15,9 @@ schema: hstemplate/src/Schema.hs
 hstemplate/src/Schema.hs: $(DBDEPS)
 	bash ./scripts/gen_schema.sh
 
+mainwatch:
+	ghcid -T :main -c 'stack repl hstemplate:lib hstemplate:exe:server' --restart="hstemplate/package.yaml" --restart="stack.yaml" --restart=verify $(foreach file, $(DBDEPS), "--restart=$(file)")
+
 testwatch:
 	ghcid -T :main -c 'stack repl hstemplate:lib hstemplate:test:hstemplate-test' --restart="hstemplate/package.yaml" --restart="stack.yaml" --restart=verify $(foreach file, $(DBDEPS), "--restart=$(file)")
 

@@ -1,12 +1,18 @@
-{-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE RecordWildCards   #-}
 module Env where
 
--- import qualified Database.PostgreSQL.Simple.Options as PGconnstr
 import           Config            (Config (..))
+import qualified Honeycomb         as HC
+import qualified Honeycomb.Trace   as HC
 import           Schema            (DB)
-import           Squeal.PostgreSQL
+import           Squeal.PostgreSQL (Connection, K, Pool, createConnectionPool)
 
---  { connection :: PGconnstr.Options }
+instance HC.HasHoney Env where
+  honeyL = error "not yet"
+
+instance HC.HasSpanContext Env where
+  spanContextL = error "not yet"
 
 buildEnv :: Config -> IO Env
 buildEnv Config {..} = do
@@ -15,4 +21,5 @@ buildEnv Config {..} = do
 
 data Env
   = Env
-      {connectionPool :: Pool (K Connection DB)}
+      { connectionPool :: !(Pool (K Connection DB))
+      }
