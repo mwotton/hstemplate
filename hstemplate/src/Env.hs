@@ -5,14 +5,15 @@ module Env where
 import           Config            (Config (..))
 import qualified Honeycomb         as HC
 import qualified Honeycomb.Trace   as HC
+import           Lens.Micro.Mtl    ()
 import           Schema            (DB)
 import           Squeal.PostgreSQL (Connection, K, Pool, createConnectionPool)
 
 instance HC.HasHoney Env where
-  honeyL = error "not yet"
+  honeyL = _
 
 instance HC.HasSpanContext Env where
-  spanContextL = error "not yet"
+  spanContextL = lens _
 
 buildEnv :: Config -> IO Env
 buildEnv Config {..} = do
