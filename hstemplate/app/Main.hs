@@ -5,7 +5,7 @@ module Main where
 import           API                      (API)
 import           Config                   (Config (..), configFromEnv)
 import           Control.Exception        (try)
-import           Env                      (Env, buildEnv, connectionPool)
+import           Env                      (Env, connectionPool, withEnv)
 -- import           Middleware               (honeyMiddleware)
 import           Honeycomb.Trace
 import           Manager                  (AppT, runApp)

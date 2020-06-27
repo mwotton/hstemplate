@@ -14,20 +14,22 @@ import           UnliftIO
 instance HC.HasHoney Env where
   honeyL = lens appHoneycomb (\x y -> x { appHoneycomb = y })
 
--- instance HC.HasSpanContext Env where
---   spanContextL = lens _ _
+instance HC.HasSpanContext Env where
+  spanContextL = lens appHoneycombSpanContext (\x y -> x { appHoneycombSpanContext = y })
+
 
 withEnv :: (MonadIO m,MonadUnliftIO m) => Config -> (Env -> m a) -> m a
 withEnv Config{..} f = do
   server <- HC.defaultHoneyServerOptions
   HC.withHoney' server  honeyConf $ \appHoneycomb ->
     bracket (createConnectionPool connstr 1 0.5 20) destroyConnectionPool $ \connectionPool ->
-      f (Env {..})
+      let appHoneycombSpanContext = Nothing in f (Env {..})
 
 
 
 data Env
   = Env
-      { connectionPool :: !(Pool (K Connection DB))
-      , appHoneycomb   :: !HC.Honey
+      { connectionPool          :: !(Pool (K Connection DB))
+      , appHoneycomb            :: !HC.Honey
+      , appHoneycombSpanContext :: Maybe HC.SpanContext
       }
