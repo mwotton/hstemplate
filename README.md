@@ -37,6 +37,8 @@ needs _something_ for things like preflights and non-haskell dependency checking
 - CI github action
 - deployment
   - heroku/docker deployment, sqitch container for migrations.
+- code coverage is recorded
+  - only get a zip file. cooler if this worked https://github.com/actions/upload-artifact/issues/62#issuecomment-601472239 - in the works.
 
 TODO
 
@@ -64,7 +66,7 @@ TODO
   - https://github.com/ArturGajowy/ghc-clippy-plugin/ better error messages
 
 - test framework using tmp-postgres to set up test databases
-- code coverage check in CI
+- coverage ratchet
 - honeycomb monitoring
   - https://github.com/EarnestResearch/honeycomb-wai-haskell/blob/master/src/Network/Wai/Honeycomb.hs
     wai middleware for honeycomb, not more general

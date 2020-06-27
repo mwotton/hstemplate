@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.31.2.
+-- This file has been generated from package.yaml by hpack version 0.33.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: cdd4725e37c0890a17380a99b1aaf8593299c8b7206e34e418a03be43c2e63a6
+-- hash: 316eb215a0bb9caece580522b95b42ee70bbe257d13c2a84594eeb56cc592bd8
 
 name:           hstemplate
 version:        0.1.0.0
@@ -48,6 +48,8 @@ library
     , bytestring
     , exceptions
     , generics-sop
+    , honeycomb
+    , honeycomb-wai
     , hspec
     , monad-logger
     , postgres-options
@@ -72,6 +74,8 @@ executable server
     , bytestring
     , exceptions
     , generics-sop
+    , honeycomb
+    , honeycomb-wai
     , hspec
     , hstemplate
     , monad-logger
@@ -101,6 +105,8 @@ test-suite hstemplate-test
     , bytestring
     , exceptions
     , generics-sop
+    , honeycomb
+    , honeycomb-wai
     , hspec
     , hstemplate
     , monad-logger

@@ -60,6 +60,28 @@ packages:
       sha256: 90db92c8401880187ce642c5345407bcbd9546ea235524dd445cab2566ee3db1
   original:
     hackage: base-noprelude-4.13.0.0
+- completed:
+    name: honeycomb
+    version: 0.1.0.0
+    git: https://github.com/EarnestResearch/honeycomb-haskell.git
+    pantry-tree:
+      size: 3397
+      sha256: 71b6d9fa90a1e155069648ee80fe71067af09d202f09fa22c4f4bd2c79066253
+    commit: 11f70ec37a0b514843fcf7546b09e5b0b7181700
+  original:
+    git: https://github.com/EarnestResearch/honeycomb-haskell.git
+    commit: 11f70ec37a0b514843fcf7546b09e5b0b7181700
+- completed:
+    name: honeycomb-wai
+    version: 0.1.0.0
+    git: https://github.com/EarnestResearch/honeycomb-wai-haskell.git
+    pantry-tree:
+      size: 787
+      sha256: 0f7f5f3414ff7d339dccc3eb6d5194b5ff0fc53544db7323f39f4a6bec31a83c
+    commit: 69a9078596b007bfa0fc5f48803fafe4670d1758
+  original:
+    git: https://github.com/EarnestResearch/honeycomb-wai-haskell.git
+    commit: 69a9078596b007bfa0fc5f48803fafe4670d1758
 snapshots:
 - completed:
     size: 494638

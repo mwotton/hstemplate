@@ -9,3 +9,7 @@ packages:
 - servant-server-0.17@sha256:1a5adf564f0b703535eb733f249b282ef2ca7b587a303c357b549fb88e7a6dcd,5388
 - servant-client-core-0.17
 - base-noprelude-4.13.0.0
+- git: https://github.com/EarnestResearch/honeycomb-haskell.git
+  commit: 11f70ec37a0b514843fcf7546b09e5b0b7181700
+- git: https://github.com/EarnestResearch/honeycomb-wai-haskell.git
+  commit: 69a9078596b007bfa0fc5f48803fafe4670d1758

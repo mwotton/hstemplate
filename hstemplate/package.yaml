@@ -20,6 +20,8 @@ dependencies:
 - bytestring
 - exceptions
 - generics-sop
+- honeycomb
+- honeycomb-wai
 - monad-logger
 - postgres-options
 - squeal-postgresql
