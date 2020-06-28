@@ -6,8 +6,7 @@ import           Test.Hspec
 
 spec = describe "DB" $ do
   it "can get foos" $
-    withDbCache $ \cache -> do
-
-    () `shouldBe` ()
+    withDbCache $ \cache ->
+      () `shouldBe` ()
   it "does other stuff" $
     () `shouldBe` ()
