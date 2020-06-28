@@ -3,10 +3,9 @@
 module Server where
 
 import           API                    (API, Routes (..))
-import           Env                    (Env (..))
-import           Manager                (App, runApp)
+import           Manager                (App)
 import           Queries                (getAllFoosQ)
-import           Servant                (Handler, ServerT)
+import           Servant                (ServerT)
 import           Servant.Server.Generic (genericServerT)
 import           Squeal.PostgreSQL      (execute, getRows)
 

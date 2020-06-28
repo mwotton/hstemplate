@@ -2,23 +2,19 @@
 {-# LANGUAGE RecordWildCards   #-}
 module Main where
 
-import           API                      (API)
 import           Config                   (Config (..), configFromEnv)
 import           Control.Exception        (try)
-import           Env                      (Env, connectionPool, withEnv)
+import           Env                      (Env, withEnv)
 -- import           Middleware               (honeyMiddleware)
 import           Honeycomb.Trace
-import           Manager                  (AppT, runApp)
+import           Manager                  (runApp)
 import qualified Manager
-import           Network.Wai              (Application, Middleware)
+import           Network.Wai              (Application)
 import           Network.Wai.Handler.Warp (run)
-import           Network.Wai.Honeycomb    (MiddlewareT, liftApplication,
-                                           runApplicationT, runMiddlewareT,
+import           Network.Wai.Honeycomb    (liftApplication, runApplicationT,
                                            traceApplicationT)
 import           Servant.Server           (Handler (..), hoistServer, serve)
 import           Server                   (api, server)
-import           Squeal.PostgreSQL        (MonadPQ (..), PQ,
-                                           usingConnectionPool)
 
 main :: IO ()
 main = do
