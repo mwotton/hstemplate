@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 988a9020089e045580c190b9996f73f3e9bb16d61e6147d17d192ccf56a75d8a
+-- hash: c565c35cb8930577a67e08c36ed46f6c5fe9433315f31ed63132cb37ac310e17
 
 name:           hstemplate
 version:        0.1.0.0
@@ -44,6 +44,7 @@ library
       src
   build-depends:
       aeson
+    , async
     , base-noprelude
     , bytestring
     , exceptions
@@ -60,6 +61,7 @@ library
     , servant
     , servant-server
     , squeal-postgresql
+    , tmp-postgres >=1.34.1.0
     , unliftio
     , wai
   default-language: Haskell2010
@@ -73,6 +75,7 @@ executable server
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
+    , async
     , base-noprelude
     , bytestring
     , exceptions
@@ -90,6 +93,7 @@ executable server
     , servant
     , servant-server
     , squeal-postgresql
+    , tmp-postgres >=1.34.1.0
     , unliftio
     , wai
     , warp
@@ -99,6 +103,8 @@ test-suite hstemplate-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      AroundAll
+      DBSpec
       PreflightSpec
       Paths_hstemplate
   hs-source-dirs:
@@ -107,6 +113,7 @@ test-suite hstemplate-test
   build-depends:
       QuickCheck
     , aeson
+    , async
     , base-noprelude
     , bytestring
     , exceptions
@@ -124,6 +131,7 @@ test-suite hstemplate-test
     , servant
     , servant-server
     , squeal-postgresql
+    , tmp-postgres >=1.34.1.0
     , unliftio
     , wai
   default-language: Haskell2010

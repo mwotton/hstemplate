@@ -29,6 +29,7 @@ dependencies:
 - squeal-postgresql
 - servant
 - servant-server
+- tmp-postgres >= 1.34.1.0
 - unliftio
 - wai
 
@@ -36,6 +37,7 @@ dependencies:
 # https://github.com/digital-asset/ghcide/issues/113
 - process
 - hspec
+- async
 # ghcide also can't seem to execute hspec-discover.
 # - hspec-discover
 

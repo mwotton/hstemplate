@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+import qualified DBSpec
 import qualified PreflightSpec
 import           Queries
 import           Squeal.PostgreSQL
@@ -13,3 +14,4 @@ spec = describe "hstemplate" $ do
   -- silly test to check coverage
   it "serialises" $
     renderSQL getAllFoosQ `shouldBe` renderSQL getAllFoosQ
+  DBSpec.spec

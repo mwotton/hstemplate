@@ -30,7 +30,6 @@ this one is rough. ghcide is great, but [this bug](https://github.com/digital-as
 needs _something_ for things like preflights and non-haskell dependency checking
 
 - servant api
-  done-ish, still needs a hookup from servant api to squeal monad
 - postgres/squeal backend
 - migrations with sqitch
 - ormolu hook
@@ -45,6 +44,10 @@ needs _something_ for things like preflights and non-haskell dependency checking
 
 TODO
 
+- better squeal hookup: don't want to take a connection from the pool if we might not
+  actually be doing any database work.
+- better hlint display
+- aroundall for tmp-postgres testing
 - authn
   - https://hackage.haskell.org/package/wai-middleware-auth looks reasonable?
 - property enforcement mechanisms
@@ -73,3 +76,6 @@ TODO
 - test framework using tmp-postgres to set up test databases
 - coverage ratchet
 - healthchecks
+  - unclear what to do here.
+  - Should a healthcheck failure block a release?
+  - what if it's due to external circumstances?
