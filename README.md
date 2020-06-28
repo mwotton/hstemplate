@@ -46,8 +46,6 @@ TODO
 
 - better squeal hookup: don't want to take a connection from the pool if we might not
   actually be doing any database work.
-- better hlint display
-- aroundall for tmp-postgres testing
 - authn
   - https://hackage.haskell.org/package/wai-middleware-auth looks reasonable?
 - property enforcement mechanisms
