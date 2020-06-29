@@ -7,14 +7,22 @@
 --   but is runtime information (connection pools etc)
 module Config where
 
-import qualified Honeycomb          as HC
-import           Lens.Micro.Mtl     (view)
-import           System.Environment (getEnv)
+import qualified Data.HashMap.Strict                       as HM
+import qualified Honeycomb                                 as HC
+import           Lens.Micro.Mtl                            (view)
+import           Network.Wai.Middleware.Auth.OAuth2.Github (Github (..),
+                                                            mkGithubProvider)
+import           Network.Wai.Middleware.Auth.Provider      (Provider (..))
+import           System.Environment                        (getEnv,
+                                                            getEnvironment)
+
+
 
 data Config = Config
-  { connstr   :: !ByteString
-  , portnum   :: !Int
-  , honeyConf :: !HC.HoneyOptions
+  { connstr       :: !ByteString
+  , portnum       :: !Int
+  , honeyConf     :: !HC.HoneyOptions
+  , authProviders :: [Provider]
   }
 
 configFromEnv :: IO Config
@@ -24,8 +32,22 @@ configFromEnv = do
                   . readMaybe <$> getEnv "PORT"
   honeyConf <- HC.honeyOptionsFromEnv
   when (isNothing $ view HC.apiKeyL honeyConf ) $
-    error "define HONEYCOMB_API_KEY"
+    fail "define HONEYCOMB_API_KEY"
   when (isNothing $ view HC.datasetL honeyConf ) $
-    error "define HONEYCOMB_DATASET"
+    fail "define HONEYCOMB_DATASET"
+
+  env <- HM.fromList <$> getEnvironment
+  let authProviders = catMaybes [Provider <$> parseGithubProvider env]
+  when (null authProviders) $
+    fail "Must have at least one auth provider"
 
   pure Config{..}
+
+parseGithubProvider :: HM.HashMap String String -> Maybe Github
+parseGithubProvider e = let l = flip HM.lookup e in
+  mkGithubProvider
+  <$> fmap toText (l "GITHUB_APPNAME")
+  <*> fmap toText (l "GITHUB_CLIENT_ID")
+  <*> fmap toText (l "GITHUB_CLIENT_SECRET")
+  <*> Just (maybe [] (pure . fromString) $ l "GITHUB_EMAIL_WHITELISTS")
+  <*> Just Nothing

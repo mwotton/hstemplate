@@ -13,3 +13,4 @@ packages:
   commit: 11f70ec37a0b514843fcf7546b09e5b0b7181700
 - git: https://github.com/EarnestResearch/honeycomb-wai-haskell.git
   commit: 69a9078596b007bfa0fc5f48803fafe4670d1758
+- wai-middleware-auth-0.2.3.1@sha256:4376a939132be7099e0d35683e1151d98c5cedd94a5f82c1ff164ce43d648532,4303

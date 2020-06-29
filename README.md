@@ -48,6 +48,11 @@ TODO
   actually be doing any database work.
 - authn
   - https://hackage.haskell.org/package/wai-middleware-auth looks reasonable?
+- test framework using tmp-postgres to set up test databases
+- coverage ratchet
+
+RUMINATIONS
+
 - property enforcement mechanisms
   - emacs save hook
   - ghc source plugin
@@ -71,8 +76,6 @@ TODO
 - non-enforcement source plugins
   - https://github.com/ArturGajowy/ghc-clippy-plugin/ better error messages
 
-- test framework using tmp-postgres to set up test databases
-- coverage ratchet
 - healthchecks
   - unclear what to do here.
   - Should a healthcheck failure block a release?

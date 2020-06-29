@@ -82,6 +82,13 @@ packages:
   original:
     git: https://github.com/EarnestResearch/honeycomb-wai-haskell.git
     commit: 69a9078596b007bfa0fc5f48803fafe4670d1758
+- completed:
+    hackage: wai-middleware-auth-0.2.3.1@sha256:4376a939132be7099e0d35683e1151d98c5cedd94a5f82c1ff164ce43d648532,4303
+    pantry-tree:
+      size: 1633
+      sha256: 57afe4ae908c75554e69c34dcafb6efa8a17c3e7dc4cdc9fdb550793b5cc2020
+  original:
+    hackage: wai-middleware-auth-0.2.3.1@sha256:4376a939132be7099e0d35683e1151d98c5cedd94a5f82c1ff164ce43d648532,4303
 snapshots:
 - completed:
     size: 494638

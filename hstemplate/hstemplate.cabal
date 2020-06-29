@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c565c35cb8930577a67e08c36ed46f6c5fe9433315f31ed63132cb37ac310e17
+-- hash: d2f9392bf978ab81691859c1c145042788c09347b4defbc25eb25dd177242259
 
 name:           hstemplate
 version:        0.1.0.0
@@ -28,6 +28,7 @@ source-repository head
 library
   exposed-modules:
       API
+      Auth
       Config
       Env
       Error
@@ -52,6 +53,7 @@ library
     , honeycomb
     , honeycomb-wai
     , hspec
+    , http-types
     , microlens
     , microlens-mtl
     , monad-logger
@@ -63,7 +65,9 @@ library
     , squeal-postgresql
     , tmp-postgres >=1.34.1.0
     , unliftio
+    , unordered-containers
     , wai
+    , wai-middleware-auth
   default-language: Haskell2010
 
 executable server
@@ -84,6 +88,7 @@ executable server
     , honeycomb-wai
     , hspec
     , hstemplate
+    , http-types
     , microlens
     , microlens-mtl
     , monad-logger
@@ -95,7 +100,9 @@ executable server
     , squeal-postgresql
     , tmp-postgres >=1.34.1.0
     , unliftio
+    , unordered-containers
     , wai
+    , wai-middleware-auth
     , warp
   default-language: Haskell2010
 
@@ -122,6 +129,7 @@ test-suite hstemplate-test
     , honeycomb-wai
     , hspec
     , hstemplate
+    , http-types
     , microlens
     , microlens-mtl
     , monad-logger
@@ -133,5 +141,7 @@ test-suite hstemplate-test
     , squeal-postgresql
     , tmp-postgres >=1.34.1.0
     , unliftio
+    , unordered-containers
     , wai
+    , wai-middleware-auth
   default-language: Haskell2010
