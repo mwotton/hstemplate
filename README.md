@@ -50,6 +50,12 @@ TODO
   - https://hackage.haskell.org/package/wai-middleware-auth looks reasonable?
 - test framework using tmp-postgres to set up test databases
 - coverage ratchet
+- payments
+  - https://stripe.com/docs/billing/subscriptions/fixed-price#how-to-model-it-on-stripe
+  - https://github.com/dmjio/stripe
+  - can get rid of the fake endpoints and migrations now, as there will be a real User model.
+  - add webhook stuff
+
 
 RUMINATIONS
 
