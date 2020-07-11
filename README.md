@@ -41,13 +41,21 @@ needs _something_ for things like preflights and non-haskell dependency checking
 - honeycomb monitoring
   - https://github.com/EarnestResearch/honeycomb-wai-haskell/blob/master/src/Network/Wai/Honeycomb.hs
     wai middleware for honeycomb, not more general
-
+- authn
+  - https://hackage.haskell.org/package/wai-middleware-auth looks reasonable?
 TODO
 
 - better squeal hookup: don't want to take a connection from the pool if we might not
   actually be doing any database work.
 - authn
-  - https://hackage.haskell.org/package/wai-middleware-auth looks reasonable?
+  - actually provide way to use logged-in status and identity
+- authz
+  - how hardcore do we want to be?
+	- could use https://github.com/Simspace/avaleryar
+	- should it be baked into the servant type?
+	- probably needs to talk about tiers of service too
+- rationing/quotas - not quite the same thing as authz.
+  - could we lean on honeycomb instead? set an alert for egregious abuse?
 - test framework using tmp-postgres to set up test databases
 - coverage ratchet
 - payments
