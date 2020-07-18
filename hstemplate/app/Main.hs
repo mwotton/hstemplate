@@ -31,7 +31,7 @@ main = do
 setupMiddleware :: Config -> Env -> Application -> IO Application
 setupMiddleware config env myapp = do
   authMiddleware <- genAuthMiddleware config
-  authMiddleware <$> honeyMid myapp
+  honeyMid $ authMiddleware myapp
 
   where
     -- TODO refactor this to IO Middleware
