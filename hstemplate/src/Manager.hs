@@ -11,7 +11,7 @@ module Manager where
 import           Env
 import           Error                ()
 import           Schema
-import           Squeal.PostgreSQL    (MonadPQ (..), PQ, transactionally_,
+import           Squeal.PostgreSQL    (PQ, transactionally_,
                                        usingConnectionPool)
 import           UnliftIO (MonadUnliftIO(..))
 import Control.Monad.Catch (MonadCatch, MonadThrow, MonadMask)
