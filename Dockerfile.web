@@ -1,5 +1,6 @@
 FROM fpco/stack-build:lts-15.11 as dependencies
 RUN mkdir /opt/build /opt/build/hstemplate
+RUN apt update && apt -y install upx-ucl
 COPY stack.yaml stack.yaml.lock snapshot.yaml /opt/build/
 COPY hstemplate/package.yaml /opt/build/hstemplate/
 RUN cd /opt/build && stack build --system-ghc --dependencies-only
@@ -8,7 +9,8 @@ FROM fpco/stack-build:lts-15.11 as build
 # grab these from clean deps build
 COPY --from=dependencies /root/.stack /root/.stack
 COPY . /opt/build
-RUN cd /opt/build && stack install --system-ghc
+RUN cd /opt/build && stack install --system-ghc && find ~/.local/bin -exec file {} \; | grep ELF | grep -v shared | sed 's/:.*//' | while read x; do upx $x; done
+
 
 FROM heroku/heroku:18.nightly as server
 RUN mkdir -p /opt/hstemplate
