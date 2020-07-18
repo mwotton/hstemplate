@@ -2,11 +2,10 @@
 {-# LANGUAGE RecordWildCards   #-}
 module Main where
 
+import           Auth
 import           Config                   (Config (..), configFromEnv)
 import           Control.Exception        (try)
 import           Env                      (Env, withEnv)
--- import           Middleware               (honeyMiddleware)
-import           Auth
 import           Honeycomb.Trace
 import           Manager                  (runApp)
 import qualified Manager
@@ -38,13 +37,8 @@ setupMiddleware config env myapp = do
       (runApplicationT (traceApplicationT (ServiceName "hstemplate") (SpanName "some span")
                         $ liftApplication baseApp))
 
-
-
-
 app :: Env -> Application
 app env = serve api $ hoistServer api (nt env) server
-
-
 
 nt :: Env -> Manager.App x -> Handler x
 nt env = Handler . ExceptT . try . runApp env
