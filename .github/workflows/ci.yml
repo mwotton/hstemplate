@@ -74,6 +74,10 @@ jobs:
       run: |
         sudo apt install -y postgresql-10 sqitch
 
+    - name: make local binpath
+      run: |
+        mkdir "$HOME/.local/bin"
+
     - name: munge path
       run: |
         echo "::add-path::$HOME/.local/bin"
