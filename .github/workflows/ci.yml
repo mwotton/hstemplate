@@ -76,7 +76,7 @@ jobs:
 
     - name: make local binpath
       run: |
-        mkdir "$HOME/.local/bin"
+        mkdir -p "$HOME/.local/bin"
 
     - name: munge path
       run: |
