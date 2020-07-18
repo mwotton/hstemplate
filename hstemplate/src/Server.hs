@@ -3,7 +3,7 @@
 module Server where
 
 import           API                    (API, Routes (..))
-import           Manager                (App)
+import           Manager                (App, runDB)
 import           Queries                (getAllFoosQ)
 import           Servant                (ServerT)
 import           Servant.Server.Generic (genericServerT)
@@ -15,7 +15,7 @@ import           Squeal.PostgreSQL      (execute, getRows)
 -- me too badly for now.
 server :: ServerT API App
 server = genericServerT $  Routes
-  { getFoos = getRows =<< execute getAllFoosQ
+  { getFoos = runDB $ getRows =<< execute getAllFoosQ
   , someInt = pure 12
   }
 --  where run = liftIO . runApp e

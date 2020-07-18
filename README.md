@@ -29,6 +29,8 @@ this one is rough. ghcide is great, but [this bug](https://github.com/digital-as
 
 needs _something_ for things like preflights and non-haskell dependency checking
 
+- better squeal hookup: don't want to take a connection from the pool if we might not
+  actually be doing any database work.
 - servant api
 - postgres/squeal backend
 - migrations with sqitch
@@ -45,9 +47,13 @@ needs _something_ for things like preflights and non-haskell dependency checking
   - https://hackage.haskell.org/package/wai-middleware-auth looks reasonable?
 TODO
 
+- migration testing
+  - possibility for multi-prod system
+	- stash databases as docker images: name schema project-YYYY-MM-DD
+	- migration tester can build a new image
+  - but... we don't really need that. all that we really need is a push to staging and a healthcheck
+  - also staging should pull prod's db in order to migrate it?
 - announce deploys somewhere
-- better squeal hookup: don't want to take a connection from the pool if we might not
-  actually be doing any database work.
 - authn
   - actually provide way to use logged-in status and identity
 - authz

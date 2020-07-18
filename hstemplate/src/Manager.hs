@@ -11,7 +11,7 @@ module Manager where
 import           Env
 import           Error                ()
 import           Schema
-import           Squeal.PostgreSQL    (MonadPQ (..), PQ,
+import           Squeal.PostgreSQL    (MonadPQ (..), PQ, transactionally_,
                                        usingConnectionPool)
 import           UnliftIO (MonadUnliftIO(..))
 import Control.Monad.Catch (MonadCatch, MonadThrow, MonadMask)
@@ -23,10 +23,10 @@ instance MonadUnliftIO m => MonadUnliftIO (AppT r m) where
     withRunInIO $ \run ->
     inner (run . flip runReaderT r . unAppT)
 
-instance (db ~ DB, MonadPQ db m) => MonadPQ db (AppT r m) where
-  executeParams q = lift . executeParams q
-  executePrepared q = lift . executePrepared q
-  executePrepared_ q = lift . executePrepared_ q
+-- instance (db ~ DB, MonadPQ db m) => MonadPQ db (AppT r m) where
+--   executeParams q = lift . executeParams q
+--   executePrepared q = lift . executePrepared q
+--   executePrepared_ q = lift . executePrepared_ q
 
 -- TODO: choose a logging framework
 newtype AppT r m a = AppT { unAppT :: ReaderT r m a }
@@ -45,16 +45,15 @@ newtype AppT r m a = AppT { unAppT :: ReaderT r m a }
 instance MonadTrans (AppT r) where
   lift = AppT . lift
 
-type App = AppT Env (PQ DB DB IO)
-
--- runAppInTransaction :: Env -> App a -> IO a
+type App = AppT Env IO
 
 runApp :: MonadUnliftIO io
        =>  Env
-       -> AppT Env (PQ DB DB io)  x
+       -> AppT Env io x
        -> io x
+runApp env = flip runReaderT env . unAppT
 
-runApp env =
-    usingConnectionPool (connectionPool env)
-  . flip runReaderT env
-  . unAppT
+runDB :: PQ DB DB IO a -> App a
+runDB f = do
+  env <- ask
+  lift $ usingConnectionPool (connectionPool env) $ transactionally_ f
