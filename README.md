@@ -47,6 +47,8 @@ needs _something_ for things like preflights and non-haskell dependency checking
   - https://hackage.haskell.org/package/wai-middleware-auth looks reasonable?
 TODO
 
+- should deployment be gated on passing tests in github? if so, perhaps we
+  want to deploy from github at the end of a push.
 - migration testing
   - possibility for multi-prod system
 	- stash databases as docker images: name schema project-YYYY-MM-DD
