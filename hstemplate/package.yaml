@@ -27,6 +27,7 @@ dependencies:
 - microlens-mtl
 - monad-logger
 - postgres-options
+- postgresql-libpq
 - squeal-postgresql
 - servant
 - servant-server
@@ -41,6 +42,7 @@ dependencies:
 - process
 - hspec
 - async
+- resource-pool
 # ghcide also can't seem to execute hspec-discover.
 # - hspec-discover
 

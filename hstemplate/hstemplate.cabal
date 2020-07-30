@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d2f9392bf978ab81691859c1c145042788c09347b4defbc25eb25dd177242259
+-- hash: 6d07cd377c83ee4527d2373292b8b8d68876102ba2a163b481737a0552dc5f6a
 
 name:           hstemplate
 version:        0.1.0.0
@@ -58,8 +58,10 @@ library
     , microlens-mtl
     , monad-logger
     , postgres-options
+    , postgresql-libpq
     , process
     , relude
+    , resource-pool
     , servant
     , servant-server
     , squeal-postgresql
@@ -93,8 +95,10 @@ executable server
     , microlens-mtl
     , monad-logger
     , postgres-options
+    , postgresql-libpq
     , process
     , relude
+    , resource-pool
     , servant
     , servant-server
     , squeal-postgresql
@@ -134,8 +138,10 @@ test-suite hstemplate-test
     , microlens-mtl
     , monad-logger
     , postgres-options
+    , postgresql-libpq
     , process
     , relude
+    , resource-pool
     , servant
     , servant-server
     , squeal-postgresql
