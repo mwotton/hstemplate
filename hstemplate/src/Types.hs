@@ -4,7 +4,7 @@
 
 module Types where
 
-import Data.Aeson(ToJSON)
+import Data.Aeson(ToJSON, FromJSON)
 import qualified GHC.Generics as GHC
 import qualified Generics.SOP as SOP
 
@@ -16,4 +16,5 @@ data Foo
   deriving stock (Show, GHC.Generic, Eq)
   deriving anyclass (SOP.Generic, SOP.HasDatatypeInfo)
 
+instance FromJSON Foo
 instance ToJSON Foo

@@ -29,6 +29,7 @@ dependencies:
 - postgres-options
 - squeal-postgresql
 - servant
+- servant-docs
 - servant-server
 - tmp-postgres >= 1.34.1.0
 - unliftio
@@ -41,6 +42,8 @@ dependencies:
 - process
 - hspec
 - async
+- postgresql-libpq
+- resource-pool
 # ghcide also can't seem to execute hspec-discover.
 # - hspec-discover
 

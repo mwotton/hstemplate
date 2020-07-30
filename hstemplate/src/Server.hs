@@ -1,4 +1,6 @@
 {-# OPTIONS_GHC -fno-warn-deprecations #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE RecordWildCards   #-}
 
 module Server where
 
@@ -8,7 +10,7 @@ import           Queries                (getAllFoosQ)
 import           Servant                (ServerT)
 import           Servant.Server.Generic (genericServerT)
 import           Squeal.PostgreSQL      (execute, getRows)
-
+import           Types
 
 
 -- probably this should have a custom monad but it doesn't bother
@@ -17,6 +19,7 @@ server :: ServerT API App
 server = genericServerT $  Routes
   { getFoos = runDB $ getRows =<< execute getAllFoosQ
   , someInt = pure 12
+  , takeFooAndCrash = \Foo{..} -> error "whoops"
   }
 --  where run = liftIO . runApp e
 

@@ -7,7 +7,7 @@ import           Test.Hspec
 spec :: Spec
 spec = describe "DB" $ do
   it "can get foos" $
-    withDbCache $ \_cache ->
+    -- possibly should also migrate & cacheAction
+    withDbCache $ \cache -> withConfig (cacheConfig cache) $ \db -> do
+      let x = (toConnectionString db)
       () `shouldBe` ()
-  it "does other stuff" $
-    () `shouldBe` ()

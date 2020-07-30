@@ -14,9 +14,11 @@ type API = ToServantApi Routes
 data Routes route
   = Routes
       { getFoos :: route :-
-                   "foos" :> Get '[JSON] [Foo]
+        "foos" :> Get '[JSON] [Foo]
       , someInt :: route :-
-                   "int" :> Get '[JSON] Int
+        "int" :> Get '[JSON] Int
+      , takeFooAndCrash :: route :-
+        "fooAndCrash" :> ReqBody '[JSON] Foo :> Post '[JSON] NoContent
       }
   deriving (Generic)
 

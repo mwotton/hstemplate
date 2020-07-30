@@ -22,6 +22,7 @@ data Config = Config
   { connstr       :: !ByteString
   , portnum       :: !Int
   , honeyConf     :: !HC.HoneyOptions
+  , honeyEnabled  :: Bool
   , authProviders :: [Provider]
   }
 
@@ -35,12 +36,12 @@ configFromEnv = do
     fail "define HONEYCOMB_API_KEY"
   when (isNothing $ view HC.datasetL honeyConf ) $
     fail "define HONEYCOMB_DATASET"
-
   env <- HM.fromList <$> getEnvironment
   let authProviders = catMaybes [Provider <$> parseGithubProvider env]
   when (null authProviders) $
     fail "Must have at least one auth provider"
-
+  honeyEnabled <- fromMaybe (error "define ENABLE_HONEYCOMB") . readMaybe
+                 <$> getEnv "ENABLE_HONEYCOMB"
   pure Config{..}
 
 parseGithubProvider :: HM.HashMap String String -> Maybe Github

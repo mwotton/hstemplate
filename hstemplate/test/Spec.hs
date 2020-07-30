@@ -12,6 +12,6 @@ spec :: Spec
 spec = describe "hstemplate" $ do
   PreflightSpec.spec
   -- silly test to check coverage
-  it "serialises" $
-    renderSQL getAllFoosQ `shouldBe` renderSQL getAllFoosQ
+  -- it "serialises" $
+    -- renderSQL getAllFoosQ `shouldBe` renderSQL getAllFoosQ
   DBSpec.spec

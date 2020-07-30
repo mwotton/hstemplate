@@ -5,7 +5,7 @@ module Main where
 import           Auth
 import           Config                   (Config (..), configFromEnv)
 import           Control.Exception        (try)
-import           Env                      (Env, withEnv)
+import           Env                      (Env (..), withEnv)
 import           Honeycomb.Trace
 import           Manager                  (runApp)
 import qualified Manager
@@ -33,9 +33,12 @@ setupMiddleware config env myapp = do
     -- TODO refactor this to IO Middleware
     honeyMid :: Application -> IO Application
     honeyMid baseApp =
-      (`runReaderT` env)
-      (runApplicationT (traceApplicationT (ServiceName "hstemplate") (SpanName "some span")
-                        $ liftApplication baseApp))
+      case honeyEnabled config of
+        False -> pure baseApp
+        True ->
+          (`runReaderT` env)
+          (runApplicationT (traceApplicationT (ServiceName "hstemplate") (SpanName "some span")
+                            $ liftApplication baseApp))
 
 app :: Env -> Application
 app env = serve api $ hoistServer api (nt env) server

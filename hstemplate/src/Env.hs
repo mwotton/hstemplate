@@ -21,7 +21,14 @@ instance HC.HasSpanContext Env where
 withEnv :: (MonadIO m,MonadUnliftIO m) => Config -> (Env -> m a) -> m a
 withEnv Config{..} f = do
   server <- HC.defaultHoneyServerOptions
-  HC.withHoney' server  honeyConf $ \appHoneycomb ->
+  -- let honeyRunner
+  --       | honeyEnabled = HC.withHoney' server honeyConf
+  --       | otherwise = _
+  --       -- maybe (\f -> f Nothing)
+  --       --   (\hc f -> HC.withHoney' server hc _ ) -- $ \hc -> f (Just hc))
+  --       -- honeyConf
+  HC.withHoney' server honeyConf $ \appHoneycomb ->
+    -- HC.withHoney' server  honeyConf $ \appHoneycomb ->
     bracket (createConnectionPool connstr 1 0.5 20) destroyConnectionPool $ \connectionPool ->
       let appHoneycombSpanContext = Nothing in f (Env {..})
 
@@ -30,6 +37,6 @@ withEnv Config{..} f = do
 data Env
   = Env
       { connectionPool          :: !(Pool (K Connection DB))
-      , appHoneycomb            :: !HC.Honey
+      , appHoneycomb            :: HC.Honey
       , appHoneycombSpanContext :: Maybe HC.SpanContext
       }
