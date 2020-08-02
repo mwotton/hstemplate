@@ -103,3 +103,4 @@ RUMINATIONS
   - unclear what to do here.
   - Should a healthcheck failure block a release?
   - what if it's due to external circumstances?
+- benchmarks
