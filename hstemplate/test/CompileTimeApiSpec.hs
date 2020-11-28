@@ -11,6 +11,6 @@ testApi = Proxy
 validTestApi :: ValidApiTree API
 validTestApi = validApiTree testApi
 
-spec = describe "API" $ do
+spec = describe "compile time tests" $ do
   it "has a valid api" $ do
     validTestApi `seq` (() `shouldBe` ())
