@@ -1,3 +1,4 @@
 resolver: snapshot.yaml
 packages:
 - hstemplate
+- ./postgres-options-0.2.0.0

@@ -6,7 +6,7 @@
 {-# LANGUAGE OverloadedLabels #-}
 
 --{-# LANGUAGE TypeApplications #-}
-{-# LANGUAGE TypeOperators #-}
+-- {-# LANGUAGE TypeOperators #-}
 
 module Queries where
 

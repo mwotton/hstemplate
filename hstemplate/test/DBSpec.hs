@@ -1,13 +1,10 @@
 module DBSpec where
 
-import           AroundAll              ()
-import           Database.Postgres.Temp
 import           Test.Hspec
+import DBHelpers
 
 spec :: Spec
-spec = describe "DB" $ do
+spec = describe "DB" $
   it "can get foos" $
-    withDbCache $ \_cache ->
-      () `shouldBe` ()
-  it "does other stuff" $
-    () `shouldBe` ()
+    withSetup $ \conn ->
+      pure ()

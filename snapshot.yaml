@@ -1,16 +1,22 @@
-resolver: lts-15.11
+# resolver: lts-15.11
+resolver: lts-16.23
 
 packages:
-- squeal-postgresql-0.6.0.2@sha256:2bd808a80c8c67da612049908152134b5d70650303239c6754ed0cf1dfab5305,5624
-- free-categories-0.2.0.0@sha256:2d248c669140cf82324569eaf90406c7c9d4a510088aca1979c9bd411bc5980c,855
-- servant-quickcheck-0.0.8.0@sha256:3cc7f09544f7afedf212baeb1fcbe12ffd7c9614c0da17227f7756936644c3a3,3754
-- servant-0.17@sha256:e78734cb6b75c5d1e52e8f5e16bc3f557154a580bbde4932a7e1a6a90da7eb04,5029
-- servant-client-0.17@sha256:433be65dd541b9a387eaaced22715a028ea846d72d141419c40ddf6fd5e3409b,4573
-- servant-server-0.17@sha256:1a5adf564f0b703535eb733f249b282ef2ca7b587a303c357b549fb88e7a6dcd,5388
-- servant-client-core-0.17
-- base-noprelude-4.13.0.0
+- squeal-postgresql-0.7.0.1
+# - free-categories-0.2.0.0@sha256:2d248c669140cf82324569eaf90406c7c9d4a510088aca1979c9bd411bc5980c,855
+# - servant-quickcheck-0.0.8.0@sha256:3cc7f09544f7afedf212baeb1fcbe12ffd7c9614c0da17227f7756936644c3a3,3754
+# - servant-0.17@sha256:e78734cb6b75c5d1e52e8f5e16bc3f557154a580bbde4932a7e1a6a90da7eb04,5029
+# - servant-client-0.17@sha256:433be65dd541b9a387eaaced22715a028ea846d72d141419c40ddf6fd5e3409b,4573
+# - servant-server-0.17@sha256:1a5adf564f0b703535eb733f249b282ef2ca7b587a303c357b549fb88e7a6dcd,5388
+# - servant-client-core-0.17
+# - base-noprelude-4.13.0.0
 - git: https://github.com/EarnestResearch/honeycomb-haskell.git
   commit: 11f70ec37a0b514843fcf7546b09e5b0b7181700
 - git: https://github.com/EarnestResearch/honeycomb-wai-haskell.git
   commit: 69a9078596b007bfa0fc5f48803fafe4670d1758
 - wai-middleware-auth-0.2.3.1@sha256:4376a939132be7099e0d35683e1151d98c5cedd94a5f82c1ff164ce43d648532,4303
+- roboservant-0.1.0.2@sha256:7b5e35ed416541322259a3c63f9a3c442c96fe8218d5f2100eac0aa0e1d1fdba,1840
+- servant-flatten-0.2@sha256:276896f7c5cdec5b8f8493f6205fded0cc602d050b58fdb09a6d7c85c3bb0837,1234
+# - hspec-hedgehog-0.0.1.2@sha256:aaeeb50a43d2bce8a1850baa3ddf934a964bfe38c64efd59306b0c1421e55b45,1405
+- git: https://github.com/mwotton/servant-validate
+  commit: ec70369624203b66d042fb5dbf34d721c22b2208

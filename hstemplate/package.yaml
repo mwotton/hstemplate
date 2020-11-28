@@ -28,6 +28,7 @@ dependencies:
 - monad-logger
 - postgres-options
 - postgresql-libpq
+- roboservant
 - squeal-postgresql
 - servant
 - servant-server
@@ -73,5 +74,9 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
+    - hedgehog
+    - hspec-hedgehog
     - hstemplate
     - QuickCheck
+    - pretty-simple
+    - servant-validate
