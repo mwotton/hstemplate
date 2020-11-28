@@ -3,6 +3,13 @@ resolver: lts-16.23
 
 packages:
 - squeal-postgresql-0.7.0.1
+# need later version of servant because roboservant
+# needs IfLenient instance
+- servant-0.18.2
+- servant-server-0.18.2
+- servant-client-0.18.2
+- servant-client-core-0.18.2
+
 # - free-categories-0.2.0.0@sha256:2d248c669140cf82324569eaf90406c7c9d4a510088aca1979c9bd411bc5980c,855
 # - servant-quickcheck-0.0.8.0@sha256:3cc7f09544f7afedf212baeb1fcbe12ffd7c9614c0da17227f7756936644c3a3,3754
 # - servant-0.17@sha256:e78734cb6b75c5d1e52e8f5e16bc3f557154a580bbde4932a7e1a6a90da7eb04,5029
@@ -15,8 +22,15 @@ packages:
 - git: https://github.com/EarnestResearch/honeycomb-wai-haskell.git
   commit: 69a9078596b007bfa0fc5f48803fafe4670d1758
 - wai-middleware-auth-0.2.3.1@sha256:4376a939132be7099e0d35683e1151d98c5cedd94a5f82c1ff164ce43d648532,4303
-- roboservant-0.1.0.2@sha256:7b5e35ed416541322259a3c63f9a3c442c96fe8218d5f2100eac0aa0e1d1fdba,1840
+#- git: https://github.com/mwotton/roboservant
+#  commit: bada8f05de27a9c67419af7c28324a46f68ef1ef
 - servant-flatten-0.2@sha256:276896f7c5cdec5b8f8493f6205fded0cc602d050b58fdb09a6d7c85c3bb0837,1234
 # - hspec-hedgehog-0.0.1.2@sha256:aaeeb50a43d2bce8a1850baa3ddf934a964bfe38c64efd59306b0c1421e55b45,1405
 - git: https://github.com/mwotton/servant-validate
   commit: ec70369624203b66d042fb5dbf34d721c22b2208
+
+# roboservant deps
+- dependent-map-0.4.0.0@sha256:ca2b131046f4340a1c35d138c5a003fe4a5be96b14efc26291ed35fd08c62221,1657
+- dependent-sum-0.7.1.0@sha256:5599aa89637db434431b1dd3fa7c34bc3d565ee44f0519bfbc877be1927c2531,2068
+- vinyl-0.13.0@sha256:0f247cd3f8682b30881a07de18e6fec52d540646fbcb328420049cc8d63cd407,3724
+- constraints-extras-0.3.0.2@sha256:013b8d0392582c6ca068e226718a4fe8be8e22321cc0634f6115505bf377ad26,1853

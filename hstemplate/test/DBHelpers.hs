@@ -1,36 +1,58 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE PartialTypeSignatures #-}
+{-# LANGUAGE TupleSections #-}
+{-# OPTIONS_GHC -fno-warn-partial-type-signatures #-}
 
 module DBHelpers where
 import           Control.Exception         (throwIO)
-import           Data.Pool
+--import           Data.Pool
+import Squeal.PostgreSQL.Session.Pool
 import           Database.Postgres.Temp    (cacheAction, cacheConfig, DB,
-                                            defaultConfig,
+                                            verboseConfig,
                                             withConfig, withDbCache, toConnectionOptions)
-import           Database.PostgreSQL.LibPQ (finish, connectdb, Connection)
+import System.Directory
 import System.Process
+import System.Exit(ExitCode(..))
 import Database.PostgreSQL.Simple.Options(Options(..),host,  toConnectionString)
 import Data.Maybe(fromJust)
 import Debug.Pretty.Simple
 import qualified Data.ByteString.Char8 as BS8
+import Env(Env(..))
+import qualified Honeycomb as HC
 
-withSetup :: (Connection -> IO ()) -> IO ()
+import Squeal.PostgreSQL.Session.Connection
+
+withEnv :: (Env -> IO ()) -> IO ()
+withEnv f = HC.withHoney $ \hc ->
+  withSetup $ \pool -> do
+    f $ Env pool hc Nothing -- (error "hc") (error "hc")
+
+
+
+withSetup :: (Pool (K Connection _) -> IO ()) -> IO ()
 withSetup f = do
   -- Helper to throw exceptions
   let throwE x = either throwIO pure =<< x
 
   throwE $ withDbCache $ \dbCache -> do
 
-    let combinedConfig = defaultConfig <> cacheConfig dbCache
+    let combinedConfig = verboseConfig <> cacheConfig dbCache
     Just hash <- viaNonEmpty last . lines . toText <$> do
       putStrLn "plan called"
-      readCreateProcess (shell "sqitch plan -f format:%h") ""
-    print hash
+      (errCode, out, err) <- readCreateProcessWithExitCode (shell "cd ..; sqitch plan -f format:%h") ""
+      if errCode == ExitSuccess
+        then pure out
+        else error (toText $ unlines ["err",toText err,"out",toText out])
+    print ("hash",hash)
+    setCurrentDirectory ".."
+    print . ("dir",) =<< getCurrentDirectory
     let migrate connstr = putStrLn "migration called" >> print connstr >> callProcess "sqitch" ["deploy","-t", "db:pg:" <> BS8.unpack connstr]
     Right migratedConfig <- cacheAction ("~/.tmp-postgres/" <> toString hash)
                      (migrate . dbiConnString . toConnectionOptions  <=< dumpInfo ) combinedConfig
     withConfig migratedConfig $ \db -> do
-      pool <- createPool (connectdb . dbiConnString . toConnectionOptions $ db) finish 2 60 10
-      withResource pool f
+      -- pool <- createPool (connectdb . dbiConnString . toConnectionOptions $ db) finish 2 60 10
+      pool <- createConnectionPool (dbiConnString . toConnectionOptions $ db) 2 60 10
+      f pool
 
 dumpInfo :: DB -> IO DB
 dumpInfo db = do

@@ -24,7 +24,11 @@ aroundAll withFunc specWith = do
 
       theStop :: a -> IO ()
       theStop _ = do
+        putStrLn "aroundall stopping"
         putMVar stopper ()
+        putStrLn "aroundall putMvar"
         traverse_ cancel =<< readIORef asyncer
+        putStrLn "aroundall stopped"
+
 
   beforeAll theStart $ afterAll theStop specWith

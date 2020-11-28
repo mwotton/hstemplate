@@ -14,8 +14,8 @@ import           Network.Wai.Handler.Warp (run)
 import           Network.Wai.Honeycomb    (liftApplication, runApplicationT,
                                            traceApplicationT)
 import           Servant.Server           (Handler (..), hoistServer, serve)
-import           Server                   (api, server)
-
+import           Server                   (server, nt)
+import API(api)
 
 main :: IO ()
 main = do
@@ -39,6 +39,3 @@ setupMiddleware config env myapp = do
 
 app :: Env -> Application
 app env = serve api $ hoistServer api (nt env) server
-
-nt :: Env -> Manager.App x -> Handler x
-nt env = Handler . ExceptT . try . runApp env

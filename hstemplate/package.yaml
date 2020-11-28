@@ -20,6 +20,7 @@ dependencies:
 - bytestring
 - exceptions
 - generics-sop
+- hashable
 - honeycomb
 - honeycomb-wai
 - http-types
@@ -75,6 +76,7 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - hedgehog
+    - directory
     - hspec-hedgehog
     - hstemplate
     - QuickCheck

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d591dd796776888cc8bbc5cf76a98a06bd12fc155d7219d3785134470e649861
+-- hash: 331019b6194f9fbf1fe59b58060bd90f138cb6fab38ecbc7d2dd76570722eae7
 
 name:           hstemplate
 version:        0.1.0.0
@@ -50,6 +50,7 @@ library
     , bytestring
     , exceptions
     , generics-sop
+    , hashable
     , honeycomb
     , honeycomb-wai
     , hspec
@@ -87,6 +88,7 @@ executable server
     , bytestring
     , exceptions
     , generics-sop
+    , hashable
     , honeycomb
     , honeycomb-wai
     , hspec
@@ -132,8 +134,10 @@ test-suite hstemplate-test
     , async
     , base-noprelude
     , bytestring
+    , directory
     , exceptions
     , generics-sop
+    , hashable
     , hedgehog
     , honeycomb
     , honeycomb-wai
