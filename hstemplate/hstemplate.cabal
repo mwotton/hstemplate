@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 331019b6194f9fbf1fe59b58060bd90f138cb6fab38ecbc7d2dd76570722eae7
+-- hash: 27190169570a1b73a60a0bf3ea81816a3bfc073923b6b4968bdb7b2988dd2c4f
 
 name:           hstemplate
 version:        0.1.0.0
@@ -67,6 +67,7 @@ library
     , servant
     , servant-server
     , squeal-postgresql
+    , time
     , tmp-postgres >=1.34.1.0
     , unliftio
     , unordered-containers
@@ -106,6 +107,7 @@ executable server
     , servant
     , servant-server
     , squeal-postgresql
+    , time
     , tmp-postgres >=1.34.1.0
     , unliftio
     , unordered-containers
@@ -159,6 +161,7 @@ test-suite hstemplate-test
     , servant-server
     , servant-validate
     , squeal-postgresql
+    , time
     , tmp-postgres >=1.34.1.0
     , unliftio
     , unordered-containers

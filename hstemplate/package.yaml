@@ -9,6 +9,9 @@ copyright:           "Mark Wotton"
 extra-source-files:
 - README.md
 - ChangeLog.md
+- deploy/*
+- verify/*
+- revert/*
 
 description:         Please see the README on GitHub at <https://github.com/mwotton/hstemplate#readme>
 
@@ -33,6 +36,7 @@ dependencies:
 - squeal-postgresql
 - servant
 - servant-server
+- time
 - tmp-postgres >= 1.34.1.0
 - unliftio
 - unordered-containers

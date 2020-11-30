@@ -56,7 +56,4 @@ runApp env = flip runReaderT env . unAppT
 runDB :: PQ DB DB IO a -> App a
 runDB f = do
   env <- ask
-  liftIO $ putStrLn "blah"
-  r <- lift $ usingConnectionPool (connectionPool env) $ transactionally_ f
-  liftIO $ putStrLn "blah end"
-  pure r
+  lift $ usingConnectionPool (connectionPool env) $ transactionally_ f

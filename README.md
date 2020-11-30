@@ -5,7 +5,7 @@
 This is a distillation of all the annoying tasks I end up setting up
 anyway.
 
-DONE
+## controversial decisions
 
 - top level monorepo, package directories beneath
 
@@ -29,24 +29,10 @@ this one is rough. ghcide is great, but [this bug](https://github.com/digital-as
 
 needs _something_ for things like preflights and non-haskell dependency checking
 
-- better squeal hookup: don't want to take a connection from the pool if we might not
-  actually be doing any database work.
-- servant api
-- postgres/squeal backend
-- migrations with sqitch
-- ormolu hook
-- CI github action
-- deployment
-  - heroku/docker deployment, sqitch container for migrations.
-- code coverage is recorded
-  - only get a zip file. cooler if this worked https://github.com/actions/upload-artifact/issues/62#issuecomment-601472239 - in the works.
-- honeycomb monitoring
-  - https://github.com/EarnestResearch/honeycomb-wai-haskell/blob/master/src/Network/Wai/Honeycomb.hs
-    wai middleware for honeycomb, not more general
-- authn
-  - https://hackage.haskell.org/package/wai-middleware-auth looks reasonable?
 TODO
 
+- we should illustrate best practices for error handling - HasCallStack etc.
+- `make testwatch` has some relative-path issues to do with finding sqitch plans. Use Paths.
 - should deployment be gated on passing tests in github? if so, perhaps we
   want to deploy from github at the end of a push.
 - migration testing
@@ -65,7 +51,6 @@ TODO
 	- probably needs to talk about tiers of service too
 - rationing/quotas - not quite the same thing as authz.
   - could we lean on honeycomb instead? set an alert for egregious abuse?
-- test framework using tmp-postgres to set up test databases
 - coverage ratchet
 - payments
   - https://stripe.com/docs/billing/subscriptions/fixed-price#how-to-model-it-on-stripe

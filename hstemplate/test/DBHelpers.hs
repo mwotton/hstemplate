@@ -8,7 +8,7 @@ import           Control.Exception         (throwIO)
 --import           Data.Pool
 import Squeal.PostgreSQL.Session.Pool
 import           Database.Postgres.Temp    (cacheAction, cacheConfig, DB,
-                                            verboseConfig,
+                                            verboseConfig, postgresConfigFile, defaultConfig,
                                             withConfig, withDbCache, toConnectionOptions)
 import System.Directory
 import System.Process
@@ -36,23 +36,24 @@ withSetup f = do
 
   throwE $ withDbCache $ \dbCache -> do
 
-    let combinedConfig = verboseConfig <> cacheConfig dbCache
+    let combinedConfig = defaultConfig <> cacheConfig dbCache
+        --combinedConfig = combinedConfig' { postgresConfigFile = ("log_statement", "all") :postgresConfigFile combinedConfig' }
     Just hash <- viaNonEmpty last . lines . toText <$> do
       putStrLn "plan called"
       (errCode, out, err) <- readCreateProcessWithExitCode (shell "cd ..; sqitch plan -f format:%h") ""
       if errCode == ExitSuccess
         then pure out
-        else error (toText $ unlines ["err",toText err,"out",toText out])
-    print ("hash",hash)
+        else do
+          dir <- getCurrentDirectory
+          error (toText $ unlines ["err",toText err,"out",toText out, "dir", toText dir])
     setCurrentDirectory ".."
-    print . ("dir",) =<< getCurrentDirectory
     let migrate connstr = putStrLn "migration called" >> print connstr >> callProcess "sqitch" ["deploy","-t", "db:pg:" <> BS8.unpack connstr]
     Right migratedConfig <- cacheAction ("~/.tmp-postgres/" <> toString hash)
                      (migrate . dbiConnString . toConnectionOptions  <=< dumpInfo ) combinedConfig
+
     withConfig migratedConfig $ \db -> do
-      -- pool <- createPool (connectdb . dbiConnString . toConnectionOptions $ db) finish 2 60 10
-      pool <- createConnectionPool (dbiConnString . toConnectionOptions $ db) 2 60 10
-      f pool
+      print ("conninfo", toConnectionString $ toConnectionOptions db)
+      f =<< createConnectionPool (toConnectionString . toConnectionOptions $ db) 2 60 10
 
 dumpInfo :: DB -> IO DB
 dumpInfo db = do

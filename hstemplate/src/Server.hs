@@ -1,3 +1,4 @@
+{-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -fno-warn-deprecations #-}
 
 module Server where
@@ -20,11 +21,7 @@ import Servant.Server (hoistServer)
 server :: ServerT API App
 server = genericServerT $ Routes
   { getFoos = do
-      liftIO $ putStrLn "Getting foos!"
-      r <- runDB $ getRows =<< execute getAllFoosQ
-      liftIO $ putStrLn "got foos!"
-      pure r
-
+      runDB $ getRows =<< execute getAllFoosQ
   , someInt = pure 12
   }
 --  where run = liftIO . runApp e
