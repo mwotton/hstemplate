@@ -1,5 +1,6 @@
 # resolver: lts-15.11
-resolver: lts-16.23
+resolver: lts-16.26
+compiler: ghc-8.10.3
 
 packages:
 - squeal-postgresql-0.7.0.1
@@ -9,6 +10,8 @@ packages:
 - servant-server-0.18.2
 - servant-client-0.18.2
 - servant-client-core-0.18.2
+
+- lens-4.19.2
 
 # - free-categories-0.2.0.0@sha256:2d248c669140cf82324569eaf90406c7c9d4a510088aca1979c9bd411bc5980c,855
 # - servant-quickcheck-0.0.8.0@sha256:3cc7f09544f7afedf212baeb1fcbe12ffd7c9614c0da17227f7756936644c3a3,3754

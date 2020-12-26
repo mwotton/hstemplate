@@ -4,7 +4,7 @@
 
 module Types where
 
-import Data.Aeson(ToJSON)
+import Data.Aeson(ToJSON,FromJSON)
 import qualified GHC.Generics as GHC
 import qualified Generics.SOP as SOP
 import Data.Hashable
@@ -19,3 +19,4 @@ data Foo
 
 instance Hashable Foo
 instance ToJSON Foo
+instance FromJSON Foo

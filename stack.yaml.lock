@@ -40,6 +40,13 @@ packages:
   original:
     hackage: servant-client-core-0.18.2
 - completed:
+    hackage: lens-4.19.2@sha256:3ed9c993cdd6b397f9f56cef5f71cc51003e15eeafe76948dabf36ee22d0e6ae,16053
+    pantry-tree:
+      size: 8330
+      sha256: 127feaac3b08b04420d8cfef0ac53a183538f4284914099e8236feb03773707d
+  original:
+    hackage: lens-4.19.2
+- completed:
     name: honeycomb
     version: 0.1.0.0
     git: https://github.com/EarnestResearch/honeycomb-haskell.git
@@ -114,9 +121,38 @@ packages:
       sha256: 3ce1012bfb02e4d7def9df19ce80b8cd2b472c691b25b181d9960638673fecd1
   original:
     hackage: constraints-extras-0.3.0.2@sha256:013b8d0392582c6ca068e226718a4fe8be8e22321cc0634f6115505bf377ad26,1853
+- completed:
+    name: roboservant
+    version: 0.1.0.2
+    git: https://github.com/mwotton/roboservant
+    pantry-tree:
+      size: 1891
+      sha256: 4381423ca7a62b6073d987f91e5599370358610d8935eb3666c9238ee6a7cd53
+    commit: 3deefd61396f33270a747643aea713f50315ce7c
+  original:
+    git: https://github.com/mwotton/roboservant
+    commit: 3deefd61396f33270a747643aea713f50315ce7c
+- completed:
+    name: tmp-postgres
+    version: 1.35.0.0
+    git: https://github.com/jfischoff/tmp-postgres
+    pantry-tree:
+      size: 1616
+      sha256: 6175404eefe96a8d72910d56a90954b359d053c7ec00ff58674cc655d75de046
+    commit: 593e3ebcb7643afd6095f6269de3552d01c7ff40
+  original:
+    git: https://github.com/jfischoff/tmp-postgres
+    commit: 593e3ebcb7643afd6095f6269de3552d01c7ff40
+- completed:
+    hackage: postgres-options-0.2.0.0@sha256:5e2d6408ed3943f9a056b58106186397b9aa1424c56f1f26668305ce8ea2838f,1604
+    pantry-tree:
+      size: 295
+      sha256: a9fb2bafbaca65c548916e9276ad129302e0b82b7cc9a5c74d3b359a7a77d598
+  original:
+    hackage: postgres-options-0.2.0.0@sha256:5e2d6408ed3943f9a056b58106186397b9aa1424c56f1f26668305ce8ea2838f,1604
 snapshots:
 - completed:
-    size: 532832
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/23.yaml
-    sha256: fbb2a0519008533924c7753bd7164ddd1009f09504eb06674acad6049b46db09
-  original: lts-16.23
+    size: 533252
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/16/26.yaml
+    sha256: cdbc5db9c1afe80a5998247939027a0c7db92fa0f20b5cd01596ec3da628b622
+  original: lts-16.26

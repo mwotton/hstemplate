@@ -1,5 +1,13 @@
 resolver: snapshot.yaml
 packages:
 - hstemplate
-- ./postgres-options-0.2.0.0
-- ../roboservant
+  # - ./postgres-options-0.2.0.0
+
+extra-deps:
+- git: https://github.com/mwotton/roboservant
+  commit: 3deefd61396f33270a747643aea713f50315ce7c
+  #- git: https://github.com/jfischoff/postgres-options
+  #commit: 45bafb2092bc7a7b3c561608295294d562313dd3
+- git: https://github.com/jfischoff/tmp-postgres
+  commit: 593e3ebcb7643afd6095f6269de3552d01c7ff40
+- postgres-options-0.2.0.0@sha256:5e2d6408ed3943f9a056b58106186397b9aa1424c56f1f26668305ce8ea2838f,1604
